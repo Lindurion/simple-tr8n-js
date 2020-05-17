@@ -22,9 +22,9 @@
     "compile-test": "tsc",
     "compile-lib": "tsc --project tsconfig.lib.json",
     "fix": "gts fix",
-    "posttest": "npm.cmd run check",
-    "prepare": "npm.cmd run compile-lib",
-    "pretest": "npm.cmd run compile-test",
+    "posttest": "gts check",
+    "prepare": "tsc --project tsconfig.lib.json",
+    "pretest": "tsc",
     "test": "jest"
   },
   "devDependencies": {

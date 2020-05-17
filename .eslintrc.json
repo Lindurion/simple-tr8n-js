@@ -1,0 +1,10 @@
+{
+  "extends": "./node_modules/gts/",
+  "env": {
+    "jest": true
+  },
+  "ignorePatterns": ["/out/**"],
+  "rules": {
+    "eqeqeq": ["error", "smart"]
+  }
+}

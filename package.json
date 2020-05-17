@@ -1,0 +1,38 @@
+{
+  "name": "simple-tr8n",
+  "version": "0.1.0",
+  "description": "Really simple JavaScript (TypeScript) library for translating user-facing messages.",
+  "author": "Eric Barndollar",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lindurion/simple-tr8n-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lindurion/simple-tr8n-js/issues"
+  },
+  "homepage": "https://github.com/Lindurion/simple-tr8n-js#readme",
+  "files": [
+    "out/lib/**/*"
+  ],
+  "main": "out/lib/index.js",
+  "types": "out/lib/index.d.ts",
+  "scripts": {
+    "check": "gts check",
+    "compile-test": "tsc",
+    "compile-lib": "tsc --project tsconfig.lib.json",
+    "fix": "gts fix",
+    "posttest": "npm.cmd run check",
+    "prepare": "npm.cmd run compile-lib",
+    "pretest": "npm.cmd run compile-test",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.2",
+    "@types/node": "^13.11.1",
+    "gts": "^2.0.2",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.0.0",
+    "typescript": "^3.8.3"
+  }
+}

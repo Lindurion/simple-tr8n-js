@@ -43,15 +43,6 @@ export const enum MyLibMsgType {
 }
 ```
 
-For convenience, export a type alias based on this enum to represent messages
-within your library:
-
-```typescript
-import {TransMsg} from 'simple-tr8n';
-
-export type MyLibMsg = TransMsg<MyLibMsgType>;
-```
-
 Define default language translations (or configure a tool to generate them),
 each with a simple string template or a list of plural cases:
 
@@ -71,6 +62,10 @@ const enTranslations: SimpleTranslatedMsgConfigs<MyLibMsgType> = {
 };
 ```
 
+For each translated language you support, define (or generate) a similar
+`SimpleTranslatedMsgConfigs<MyLibMsgType>` object. Note that different languages
+can have fewer or more plural cases as needed.
+
 Parameterize your library so that it can be configured with an implementation
 of the `Translator` interface for your message type. For example:
 
@@ -82,9 +77,21 @@ export class MyLibContext {
 ```
 
 Optionally configure with your primary language translations (*e.g.*
-`enTranslations`) as a default value.
+`enTranslations`) as a default value:
 
-When your library needs to produce translated messages, use that configured
+```typescript
+const translator = new SimpleTranslator<MyLibMsgType>(enTranslations);
+```
+
+For convenience, export a type alias to represent messages within your library:
+
+```typescript
+import {TransMsg} from 'simple-tr8n';
+
+export type MyLibMsg = TransMsg<MyLibMsgType>;
+```
+
+When your library needs to produce translated messages, use the configured
 implementation:
 
 ```typescript

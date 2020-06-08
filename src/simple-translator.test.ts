@@ -13,6 +13,12 @@ const enum TestMsgType {
   COUPLE_FISH_COUNT = 'test.couple_fishCount',
 }
 
+const enum TestMsgType2 {
+  ADDL_MSG = 'test2.addl',
+}
+
+type UnionMsgType = TestMsgType | TestMsgType2;
+
 const enConfig: SimpleTranslatedMsgConfigs<TestMsgType> = {
   [TestMsgType.NO_ARGS]: 'a simple message with no arguments',
   [TestMsgType.HELLO_NAME]: 'hello, %{personName}!',
@@ -41,6 +47,11 @@ const esConfig: SimpleTranslatedMsgConfigs<TestMsgType> = {
     },
     // Not providing separate cases for 2 and 3+.
   ],
+};
+
+const enConfig2: SimpleTranslatedMsgConfigs<UnionMsgType> = {
+  ...enConfig,
+  [TestMsgType2.ADDL_MSG]: 'An additional message with %{arg}',
 };
 
 describe('SimpleTranslator', () => {
@@ -288,6 +299,33 @@ describe('SimpleTranslator', () => {
     >(enConfig);
     expect(() => enTranslator.translate(msg3)).toThrowError(
       /"test.couple_fishCount": plural arg fishCount must have number value; got: 3/,
+    );
+  });
+
+  it('should support union message types', () => {
+    const translator: Translator<UnionMsgType> = new SimpleTranslator<
+      UnionMsgType
+    >(enConfig2);
+
+    // Should work for both message types.
+    const msgType1 = new TransMsg<TestMsgType>(
+      TestMsgType.COUPLE_FISH_COUNT,
+      {
+        person1Name: 'Alice',
+        person2Name: 'Bob',
+        fishCount: 3,
+      },
+      'fishCount',
+    );
+    expect(translator.translate(msgType1)).toEqual(
+      'Alice and Bob, you have 3 fish',
+    );
+
+    const msgType2 = new TransMsg<TestMsgType2>(TestMsgType2.ADDL_MSG, {
+      arg: 'the argument',
+    });
+    expect(translator.translate(msgType2)).toEqual(
+      'An additional message with the argument',
     );
   });
 });

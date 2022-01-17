@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2022 Eric Barndollar
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # simple-tr8n-js
 
 [![Build Status](https://travis-ci.com/Lindurion/simple-tr8n-js.svg?branch=main)](https://travis-ci.com/Lindurion/simple-tr8n-js)

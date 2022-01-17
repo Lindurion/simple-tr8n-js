@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2022 Eric Barndollar
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
  * Represents a simple translatable message and its associated named arguments
  * necessary to produce a user-visible string.

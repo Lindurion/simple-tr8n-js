@@ -65,9 +65,10 @@ describe('SimpleTranslator', () => {
 
     const msg = new TransMsg<TestMsgType>(TestMsgType.NO_ARGS, {});
 
-    const translator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(invalidConfig as SimpleTranslatedMsgConfigs<TestMsgType>);
+    const translator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(
+        invalidConfig as SimpleTranslatedMsgConfigs<TestMsgType>,
+      );
     expect(() => translator.translate(msg)).toThrowError(
       /missing translation for "test.no_args"/,
     );
@@ -76,16 +77,14 @@ describe('SimpleTranslator', () => {
   it('should work for simple no-argument messages', () => {
     const msg = new TransMsg<TestMsgType>(TestMsgType.NO_ARGS, {});
 
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(enTranslator.translate(msg)).toEqual(
       'a simple message with no arguments',
     );
 
-    const esTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(esConfig);
+    const esTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(esConfig);
     expect(esTranslator.translate(msg)).toEqual(
       'un mensaje simple sin argumentos',
     );
@@ -95,9 +94,8 @@ describe('SimpleTranslator', () => {
     // Missing %{personName} argument:
     const msg = new TransMsg<TestMsgType>(TestMsgType.HELLO_NAME, {});
 
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(() => enTranslator.translate(msg)).toThrowError(
       /"test.hello_name": missing arg "personName"/,
     );
@@ -108,14 +106,12 @@ describe('SimpleTranslator', () => {
       personName: 'Alice',
     });
 
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(enTranslator.translate(msg)).toEqual('hello, Alice!');
 
-    const esTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(esConfig);
+    const esTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(esConfig);
     expect(esTranslator.translate(msg)).toEqual('hola, Alice!');
   });
 
@@ -124,14 +120,12 @@ describe('SimpleTranslator', () => {
     // the %{} pattern are left alone.
     const msg = new TransMsg<TestMsgType>(TestMsgType.PROGRESS_PCT, {pct: 72});
 
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(enTranslator.translate(msg)).toEqual('progress: 72%');
 
-    const esTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(esConfig);
+    const esTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(esConfig);
     expect(esTranslator.translate(msg)).toEqual('progreso: 72%');
   });
 
@@ -192,9 +186,8 @@ describe('SimpleTranslator', () => {
     );
 
     // English was configured with separate cases for 0, 1, 2, and 3+.
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(enTranslator.translate(msg0)).toEqual(
       'Alice and Bob, you have no fish',
     );
@@ -216,9 +209,8 @@ describe('SimpleTranslator', () => {
 
     // Spanish was only configured with cases for 1 and 2+ (just to show that
     // different languages can be configured with a different # of cases).
-    const esTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(esConfig);
+    const esTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(esConfig);
     expect(esTranslator.translate(msg1)).toEqual('Alice y Bob, tienen un pez');
     expect(esTranslator.translate(msg2)).toEqual('Alice y Bob, tienen 2 peces');
     expect(esTranslator.translate(msg3)).toEqual('Alice y Bob, tienen 3 peces');
@@ -239,9 +231,8 @@ describe('SimpleTranslator', () => {
     );
 
     // Configuration is non-plural for HELLO_NAME.
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(() => enTranslator.translate(pluralMsg)).toThrowError(
       /"test.hello_name": configured translation was plural, TransMsg non-plural/,
     );
@@ -258,9 +249,8 @@ describe('SimpleTranslator', () => {
     ); // Doesn't pass 'fishCount' as pluralArgKey.
 
     // Configuration is non-plural for HELLO_NAME.
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(() => enTranslator.translate(nonPluralMsg)).toThrowError(
       /"test.couple_fishCount": configured translation was non-plural, TransMsg plural/,
     );
@@ -279,9 +269,8 @@ describe('SimpleTranslator', () => {
 
     // Spanish was only configured with cases for 1 and 2+, so passing in a
     // count of 0 should not match any configuration.
-    const esTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(esConfig);
+    const esTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(esConfig);
     expect(() => esTranslator.translate(msg0)).toThrowError(
       /"test.couple_fishCount" had no plural configuration matching 0/,
     );
@@ -298,18 +287,16 @@ describe('SimpleTranslator', () => {
       'fishCount',
     );
 
-    const enTranslator: Translator<TestMsgType> = new SimpleTranslator<
-      TestMsgType
-    >(enConfig);
+    const enTranslator: Translator<TestMsgType> =
+      new SimpleTranslator<TestMsgType>(enConfig);
     expect(() => enTranslator.translate(msg3)).toThrowError(
       /"test.couple_fishCount": plural arg fishCount must have number value; got: 3/,
     );
   });
 
   it('should support union message types', () => {
-    const translator: Translator<UnionMsgType> = new SimpleTranslator<
-      UnionMsgType
-    >(enConfig2);
+    const translator: Translator<UnionMsgType> =
+      new SimpleTranslator<UnionMsgType>(enConfig2);
 
     // Should work for both message types.
     const msgType1 = new TransMsg<TestMsgType>(

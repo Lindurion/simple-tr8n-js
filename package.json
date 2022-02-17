@@ -1,6 +1,6 @@
 {
   "name": "simple-tr8n",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Really simple JavaScript (TypeScript) library for translating user-facing messages.",
   "author": "Eric Barndollar",
   "license": "Apache-2.0",
@@ -28,11 +28,11 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.2",
-    "@types/node": "^13.11.1",
-    "gts": "^2.0.2",
-    "jest": "^26.0.1",
-    "ts-jest": "^26.0.0",
-    "typescript": "^3.8.3"
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.7",
+    "gts": "^3.1.0",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.3",
+    "typescript": "^4.5.2"
   }
 }

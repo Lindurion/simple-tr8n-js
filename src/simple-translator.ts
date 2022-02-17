@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import {TransMsg, Translator} from './translator';
+import {Translator, TransMsg} from './translator';
 
 /**
  * A message with plural variations should be given as an array, in count order,
@@ -100,7 +100,8 @@ function replaceArgValues<MsgType extends string>(
  * map.
  */
 export class SimpleTranslator<MsgType extends string>
-  implements Translator<MsgType> {
+  implements Translator<MsgType>
+{
   constructor(readonly msgConfigs: SimpleTranslatedMsgConfigs<MsgType>) {}
 
   translate(msg: TransMsg<MsgType>): string {

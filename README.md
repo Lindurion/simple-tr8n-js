@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 # simple-tr8n-js
 
-[![Build Status](https://travis-ci.com/Lindurion/simple-tr8n-js.svg?branch=main)](https://travis-ci.com/Lindurion/simple-tr8n-js)
+[![Build Status](https://app.travis-ci.com/Lindurion/simple-tr8n-js.svg?branch=main)](https://app.travis-ci.com/Lindurion/simple-tr8n-js)
 
 Really simple JavaScript (TypeScript) library for translating user-facing
 messages. Designed for JavaScript libraries that don't want to require their

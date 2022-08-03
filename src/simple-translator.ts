@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-import {Translator, TransMsg} from './translator';
+import {Translator, TransMsg} from './translator.js';
 
 /**
  * A message with plural variations should be given as an array, in count order,

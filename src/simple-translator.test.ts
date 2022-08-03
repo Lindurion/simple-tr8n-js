@@ -5,8 +5,8 @@
 import {
   SimpleTranslatedMsgConfigs,
   SimpleTranslator,
-} from './simple-translator';
-import {TransMsg, Translator} from './translator';
+} from './simple-translator.js';
+import {TransMsg, Translator} from './translator.js';
 
 // Test translation configuration data:
 

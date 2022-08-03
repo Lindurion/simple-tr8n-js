@@ -3,10 +3,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 // Public API:
-export {TransMsg, Translator} from './translator';
+export {TransMsg, Translator} from './translator.js';
 export {
   SimpleTranslatedMsgConfigs,
   SimpleTranslator,
   SimpleTranslatorMsgConfig,
   SimpleTranslatorPluralMsgConfig,
-} from './simple-translator';
+} from './simple-translator.js';

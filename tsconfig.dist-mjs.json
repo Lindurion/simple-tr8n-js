@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "./out/dist/mjs",
+  },
+  "exclude": ["src/**/*.test.ts"]
+}

@@ -1,6 +1,6 @@
 {
   "name": "simple-tr8n",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Really simple JavaScript (TypeScript) library for translating user-facing messages.",
   "keywords": [
     "translations",
@@ -16,14 +16,16 @@
   "type": "module",
   "sideEffects": false,
   "files": [
-    "out/lib/**/*"
+    "/out/dist"
   ],
-  "main": "./out/lib/index.js",
-  "types": "./out/lib/index.d.ts",
+  "main": "out/dist/cjs/index.js",
+  "module": "out/dist/mjs/index.js",
+  "types": "out/dist/mjs/index.d.ts",
   "exports": {
     ".": {
-      "types": "./out/lib/index.d.ts",
-      "default": "./out/lib/index.js"
+      "types": "./out/dist/mjs/index.d.ts",
+      "import": "./out/dist/mjs/index.js",
+      "require": "./out/dist/cjs/index.js"
     }
   },
   "repository": {
@@ -31,21 +33,26 @@
     "url": "https://github.com/Lindurion/simple-tr8n-js.git"
   },
   "scripts": {
+    "build-cjs": "tsc --project tsconfig.dist-cjs.json && copyfiles --flat copy_to_out/dist/cjs/* out/dist/cjs",
+    "build-mjs": "tsc --project tsconfig.dist-mjs.json && copyfiles --flat copy_to_out/dist/mjs/* out/dist/mjs",
+    "build-test": "tsc --project tsconfig.test.json && copyfiles --flat copy_to_out/test/* out/test",
     "check": "gts check",
-    "compile-test": "tsc",
-    "compile-lib": "tsc --project tsconfig.lib.json",
+    "clean": "rimraf out",
     "fix": "gts fix",
-    "posttest": "gts check",
-    "prepare": "tsc --project tsconfig.lib.json",
-    "pretest": "tsc",
-    "test": "cross-env NODE_OPTIONS=--loader=ts-node/esm jasmine --config=jasmine.json"
+    "posttest": "npm run check",
+    "prepare": "npm run clean && npm run build-cjs && npm run build-mjs",
+    "pretest": "npm run build-test",
+    "test": "jasmine --config=jasmine.json --reporter=jasmine-ts-console-reporter"
   },
   "devDependencies": {
     "@types/jasmine": "^4.0.3",
     "@types/node": "^16.11.47",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "gts": "^4.0.0",
     "jasmine": "^4.3.0",
+    "jasmine-ts-console-reporter": "^3.1.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.2"
   },

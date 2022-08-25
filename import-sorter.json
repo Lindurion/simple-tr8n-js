@@ -1,0 +1,17 @@
+{
+  "generalConfiguration": {
+    "sortOnBeforeSave": true
+  },
+  "importStringConfiguration": {
+    "maximumNumberOfImportExpressionsPerLine": {
+      "count": 80,
+      "type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne"
+    },
+    "spacingPerImportExpression": {
+      "afterStartingBracket": 0,
+      "beforeEndingBracket": 0
+    },
+    "tabSize": 2,
+    "trailingComma": "multiLine"
+  }
+}

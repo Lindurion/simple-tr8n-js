@@ -1,6 +1,8 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "./out/test",
-  }
+  "files": [],
+  "references": [
+    {"path": "./tsconfig.dist-cjs.json"},
+    {"path": "./tsconfig.dist-mjs.json"},
+    {"path": "./tsconfig.test.json"}
+  ]
 }

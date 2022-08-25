@@ -1,7 +1,7 @@
 {
   "extends": "./node_modules/gts/",
   "env": {
-    "jest": true
+    "jasmine": true
   },
   "ignorePatterns": ["/out/**"],
   "rules": {
